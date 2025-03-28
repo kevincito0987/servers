@@ -25,31 +25,42 @@
 //  }
 
 
-const deleteProduct = async (id) => {
-    //configuracion del metodo DELETE
+// const deleteProduct = async (id) => {
+//     //configuracion del metodo DELETE
+//     const config = {
+//          method: "DELETE", //Borrar
+//     }
+//     //PETICION
+//     const response = await fetch(`http://localhost:5600/products/${id}`, config);
+//     console.log("Esta es la peticion", response);
+//     const result = await response.json();
+//     console.log("Esta es el resultado", result);
+//     return result;
+// }
+
+//  const findProduct = async () => {
+//     const url = new URL("http://localhost:5600/products");
+//      const config = {
+//         method: "GET", //Obtener todos los productos
+//    }
+//     const response = await fetch(url.toString(), config);
+//     const result = await response.json();
+//     return result;
+//  }
+
+const findAllProducts = async () => {
+    const url = new URL("http://localhost:5600/products");
     const config = {
-         method: "DELETE", //Borrar
+        method: "GET", //Obtener todos los productos
     }
-    //PETICION
-    const response = await fetch(`http://localhost:5600/products/${id}`, config);
+    const response = await fetch(url.toString(), config);
     console.log("Esta es la peticion", response);
     const result = await response.json();
     console.log("Esta es el resultado", result);
     return result;
 }
-
-// const findProduct = async () => {
-//     const url = new URL("http://localhost:5600/products");
-//     const config = {
-//         method: "GET", //Obtener todos los productos
-//     }
-//     const response = await fetch(url.toString(), config);
-//     const result = await response.json();
-//     return result;
-// }
-
-// const dataFindProduct = await findProduct();
-// console.log(dataFindProduct);
+const dataFindProduct = await findAllProducts();
+console.log("Los productos son", dataFindProduct);
 
 //USERS
 // const findUser = async () => {
@@ -119,14 +130,23 @@ const deleteProduct = async (id) => {
 // }
 
 // USES
-while (confirm("¿Quieres Eliminar el producto?")) {
-    const datauser = {};
-    datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
-    deleteProduct(datauser.id)
-    .then(result => alert(JSON.stringify(result)))
-    .catch(error => alert(error));
-}
-console.log(datauser);
+
+// while (confirm("¿Quieres Buscar los productos?")) {
+//     const datauser = {};
+//     datauser.name = prompt("Ingrese el nombre del producto", "Mac Mini");
+//     findProduct()
+//     .then(result => alert(JSON.stringify(result)))
+//     .catch(error => alert(error));
+// }
+
+// while (confirm("¿Quieres Eliminar el producto?")) {
+//     const datauser = {};
+//     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+//     deleteProduct(datauser.id)
+//     .then(result => alert(JSON.stringify(result)))
+//     .catch(error => alert(error));
+// }
+// console.log(datauser);
 // while (confirm("¿Quieres actualizar el producto?")) {
 //     const datauser = {};
 //     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
