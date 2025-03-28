@@ -38,28 +38,20 @@
 //     return result;
 // }
 
-const findProductById = async (data) => {
-    const {id} = data;
-    //configuracion del metodo GET
-    const url = new URL("http://localhost:5600");
-    url.pathname = `/products/${id}`;
-    const config = {
-        method: "GET", //Obtener todos los productos
-    }
-    const response = await fetch(url.toString(), config);
-    console.log("Esta es la peticion", response);
-    const result = await response.json();
-    console.log("Esta es el resultado", result);
-    return result;
-}
-
-  while (confirm("¿Quieres Buscar los productos por id?")) {
-    const datauser = {};
-    datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
-    findProductById(datauser)
-    .then(result => alert(JSON.stringify(result)))
-    .catch(error => alert(error));
-}
+// const findProductById = async (data) => {
+//     const {id} = data;
+//     //configuracion del metodo GET
+//     const url = new URL("http://localhost:5600");
+//     url.pathname = `/products/${id}`;
+//     const config = {
+//         method: "GET", //Obtener todos los productos
+//     }
+//     const response = await fetch(url.toString(), config);
+//     console.log("Esta es la peticion", response);
+//     const result = await response.json();
+//     console.log("Esta es el resultado", result);
+//     return result;
+// }
 
 // const findAllProducts = async () => {
 //     const url = new URL("http://localhost:5600/products");
@@ -75,21 +67,24 @@ const findProductById = async (data) => {
 // const dataFindProduct = await findAllProducts();
 // console.log("Los productos son", dataFindProduct);
 
-//USERS
-// const findUser = async () => {
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-//     url.pathname = "/users";
-//     const config = {
-//         method: "GET", //Obtener todos los usuarios
-//     }
-//     const response = await fetch(url.toString(), config);
-//     const result = await response.json();
-//     console.log(response);
-//     return result;
-// }
 
-// const data = await findUser();
-// console.log(data);
+
+//USERS
+
+const findAllUsers = async () => {
+    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
+    url.pathname = "/users";
+    const config = {
+        method: "GET", //Obtener todos los usuarios
+    }
+    const response = await fetch(url.toString(), config);
+    const result = await response.json();
+    console.log(response);
+    return result;
+ }
+
+const data = await findAllUsers();
+ console.log(data);
 
 // const addUser = async (data) => {
 //     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
@@ -143,6 +138,13 @@ const findProductById = async (data) => {
 // }
 
 // USES
+// while (confirm("¿Quieres Buscar los productos por id?")) {
+//     const datauser = {};
+//     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+//     findProductById(datauser)
+//     .then(result => alert(JSON.stringify(result)))
+//     .catch(error => alert(error));
+// }
 
 // while (confirm("¿Quieres Buscar los productos?")) {
 //     const datauser = {};
