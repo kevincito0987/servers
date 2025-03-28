@@ -1,71 +1,95 @@
-// const saveProduct = async (data) => {
-//     //configuracion del metodo POST
-//     const config = {
-//         method: "POST", //Guardar
-//         body: JSON.stringify(data)
-//     }
-//     //PETICION
-//     const response = await fetch("http://localhost:5600/products", config);
-//     const result = await response.json();
-//     return result;
-// }
-
-// const editProduct = async (data) => {
-//     //configuracion del metodo Patch
-
-//     const {id, ...dataupdate} = data;
-//     const config = {
-//         method: "PATCH", //Actualizar
-//         body: JSON.stringify(dataupdate)
-//     }
-//      //PETICION
-//     const response = await fetch(`http://localhost:5600/products/${id}`, config);
-//     const result = await response.json();
-//     return result;
-//  }
-
-
-// const deleteProduct = async (id) => {
-//     //configuracion del metodo DELETE
-//     const config = {
-//          method: "DELETE", //Borrar
-//     }
-//     //PETICION
-//     const response = await fetch(`http://localhost:5600/products/${id}`, config);
-//     console.log("Esta es la peticion", response);
-//     const result = await response.json();
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
-
-// const findProductById = async (data) => {
-//     const {id} = data;
-//     //configuracion del metodo GET
-//     const url = new URL("http://localhost:5600");
-//     url.pathname = `/products/${id}`;
-//     const config = {
-//         method: "GET", //Obtener todos los productos
-//     }
-//     const response = await fetch(url.toString(), config);
-//     console.log("Esta es la peticion", response);
-//     const result = await response.json();
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
-
-// const findAllProducts = async () => {
-//     const url = new URL("http://localhost:5600/products");
-//     const config = {
-//         method: "GET", //Obtener todos los productos
-//     }
-//     const response = await fetch(url.toString(), config);
-//     console.log("Esta es la peticion", response);
-//     const result = await response.json();
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
-// const dataFindProduct = await findAllProducts();
-// console.log("Los productos son", dataFindProduct);
+const products = {
+    urlProducts: "http://localhost:5600/products",
+  
+    async saveProduct(data) {
+      const config = {
+        method: "POST", //Guardar
+        body: JSON.stringify(data)
+      };
+      const response = await fetch(this.urlProducts, config);
+      const result = await response.json();
+      return result;
+    },
+  
+    async editProduct(data) {
+      const { id, ...dataupdate } = data;
+      const config = {
+        method: "PATCH", //Actualizar
+        body: JSON.stringify(dataupdate)
+      };
+      const response = await fetch(`${this.urlProducts}/${id}`, config);
+      const result = await response.json();
+      return result;
+    },
+  
+    async deleteProduct(id) {
+      const config = {
+        method: "DELETE", //Borrar
+      };
+      const response = await fetch(`${this.urlProducts}/${id}`, config);
+      console.log("Esta es la peticion", response);
+      const result = await response.json();
+      console.log("Esta es el resultado", result);
+      return result;
+    },
+  
+    async findProductById(data) {
+      const { id } = data;
+      const url = new URL(this.urlProducts);
+      url.pathname = `/${id}`;
+      const config = {
+        method: "GET", //Obtener todos los productos
+      };
+      const response = await fetch(urlProducts.toString(), config);
+      console.log("Esta es la peticion", response);
+      const result = await response.json();
+      console.log("Esta es el resultado", result);
+      return result;
+    },
+  
+    async findAllProducts() {
+      const url = new URL(this.urlProducts);
+      const config = {
+        method: "GET", //Obtener todos los productos
+      };
+      const response = await fetch(urlProducts.toString(), config);
+      console.log("Esta es la peticion", response);
+      const result = await response.json();
+      console.log("Esta es el resultado", result);
+      return result;
+    }
+  };
+  
+  const { urlProducts, saveProduct, editProduct, deleteProduct, findProductById, findAllProducts } = products;
+  
+  const productsSave = {
+    url,
+    saveProduct,
+    data: { /* Datos del producto a guardar */ } // Reemplaza con los datos reales
+  };
+  
+  const productsEdit = {
+    url,
+    editProduct,
+    data: { /* Datos del producto a editar */ } // Reemplaza con los datos reales
+  };
+  
+  const productsDelete = {
+    url,
+    deleteProduct,
+    id: Number(prompt("Ingrese el id del producto a eliminar"))
+  };
+  
+  const productsFindById = {
+    url,
+    findProductById,
+    data: { id: Number(prompt("Ingrese el id del producto a buscar")) }
+  };
+  
+  const productsFindAll = {
+    url,
+    findAllProducts,
+  };
 
 
 
