@@ -174,16 +174,26 @@
 //     header.append("Content-Type", "application/json");
 //     const config = {
 //         method: "DELETE", //Borrar
-//         headers: header,
+//          headers: header,
 //     }
 //     const response = await fetch(url.toString(), config);         
-//     const result = await response.json();
+//      const result = await response.json();
 //     console.log("Esta es la peticion", response);
 //     console.log("Esta es el resultado", result);
 //     return result;
 // }
 
+
 // USES
+
+// while (confirm("¿Quieres eliminar los productos por id?")) {
+//     const datauser = {};
+//     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+//     deleteUser(datauser.id)
+//     .then(result => alert(JSON.stringify(result)))
+//     .catch(error => alert(error));
+// }
+
 
 // while (confirm("¿Quieres actualizar la informacion del usuario?")) {
 //     const datauser = {};
