@@ -182,6 +182,40 @@ const users = {
     }
   };
 
+  const { url, endpoint, addUser, editUser, deleteUser, findAllUsers, findUserByLastname, findUsersByName } = users;
+
+const usersEdit = {
+  url,
+  endpoint,
+  editUser,
+  id: Number(prompt("Ingrese el id del usuario a editar")),
+  name: prompt("Ingrese el nuevo nombre del usuario", "Adrian"),
+  last: prompt("Ingrese el nuevo apellido del usuario", "Ruiz"),
+};
+
+const usersFindAllUsers = {
+  url,
+  endpoint,
+  findAllUsers,
+};
+const usersFindUserByLastname = {
+  url,
+  endpoint,
+  findUserByLastname,
+};
+const usersFindUsersByName = {
+  url,
+  endpoint,
+  findUsersByName,
+};
+
+const usersRemove = {
+  url,
+  endpoint,
+  deleteUser,
+  id: Number(prompt("Ingrese el id del usuario a eliminar")),
+};
+
 
 // USES
 
