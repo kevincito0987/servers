@@ -131,7 +131,19 @@ const findUserByLastname = async (lastname) => {
     return matchingUsers;
 };
 
+while (confirm("¿Quieres buscar usuarios por apellido?")) {
+    const lastname = prompt("Ingrese el apellido o parte del apellido a buscar");
 
+    findUserByLastname(lastname)
+        .then(results => {
+            if (results.length === 0) {
+                alert("No se encontraron usuarios con ese apellido.");
+            } else {
+                alert(`Usuarios encontrados:\n${results.map(user => `- ${user.name} ${user.last} (ID: ${user.id})`).join("\n")}`);
+            }
+        })
+        .catch(error => alert(`Error: ${error.message}`));
+}
 
 // const addUser = async (data) => {    
 //     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
