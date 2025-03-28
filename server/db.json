@@ -40,12 +40,6 @@
       "category": "Electronics"
     },
     {
-      "id": "3",
-      "name": "Mac Mini",
-      "price": 990,
-      "category": "Accessories"
-    },
-    {
       "id": "4",
       "name": "Monitor",
       "price": 249.99,

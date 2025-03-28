@@ -10,42 +10,33 @@
 //     return result;
 // }
 
-const editProduct = async (data) => {
-    //configuracion del metodo Patch
+// const editProduct = async (data) => {
+//     //configuracion del metodo Patch
 
-    const {id, ...dataupdate} = data;
-    const config = {
-        method: "PATCH", //Actualizar
-        body: JSON.stringify(dataupdate)
-    }
-     //PETICION
-    const response = await fetch(`http://localhost:5600/products/${id}`, config);
-    const result = await response.json();
-    return result;
- }
-
- while (confirm("¿Quieres actualizar el producto?")) {
-    const datauser = {};
-    datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
-   datauser.name = (confirm("¿Quieres cambiar el nombre del producto?")) ? prompt("Ingrese el nombre del producto", "Mac Mini") : undefined;
-   
-   datauser.price = (confirm("¿Quieres cambiar el precio del producto?")) ? Number(prompt("Ingrese el precio del producto", 680)) : undefined;
-
-   datauser.category = (confirm("¿Quieres cambiar la categoria del producto?")) ? prompt("Ingrese la categoria del producto", "Technology") : undefined;
-   editProduct(datauser)
-  .then(result => alert(JSON.stringify(result)))
-   .catch(error => alert(error));
-}
- //const deleteProduct = async (id) => {
-//     //configuracion del metodo DELETE
+//     const {id, ...dataupdate} = data;
 //     const config = {
-//         method: "DELETE", //Borrar
+//         method: "PATCH", //Actualizar
+//         body: JSON.stringify(dataupdate)
 //     }
-//     //PETICION
+//      //PETICION
 //     const response = await fetch(`http://localhost:5600/products/${id}`, config);
 //     const result = await response.json();
 //     return result;
-// }
+//  }
+
+
+const deleteProduct = async (id) => {
+    //configuracion del metodo DELETE
+    const config = {
+         method: "DELETE", //Borrar
+    }
+    //PETICION
+    const response = await fetch(`http://localhost:5600/products/${id}`, config);
+    console.log("Esta es la peticion", response);
+    const result = await response.json();
+    console.log("Esta es el resultado", result);
+    return result;
+}
 
 // const findProduct = async () => {
 //     const url = new URL("http://localhost:5600/products");
@@ -128,6 +119,26 @@ const editProduct = async (data) => {
 // }
 
 // USES
+while (confirm("¿Quieres Eliminar el producto?")) {
+    const datauser = {};
+    datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+    deleteProduct(datauser.id)
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert(error));
+}
+console.log(datauser);
+// while (confirm("¿Quieres actualizar el producto?")) {
+//     const datauser = {};
+//     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+//    datauser.name = (confirm("¿Quieres cambiar el nombre del producto?")) ? prompt("Ingrese el nombre del producto", "Mac Mini") : undefined;
+   
+//    datauser.price = (confirm("¿Quieres cambiar el precio del producto?")) ? Number(prompt("Ingrese el precio del producto", 680)) : undefined;
+
+//    datauser.category = (confirm("¿Quieres cambiar la categoria del producto?")) ? prompt("Ingrese la categoria del producto", "Technology") : undefined;
+//    editProduct(datauser)
+//   .then(result => alert(JSON.stringify(result)))
+//    .catch(error => alert(error));
+// }
 
 //   while (confirm("¿Quieres actualizar la informacion del usuario?")) {
 //     const datauser = {};
