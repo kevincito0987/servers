@@ -86,36 +86,32 @@
 // const data = await findAllUsers();
 //  console.log(data);
 
-const findUsersByName = async (name) => {
-    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
-    const config = {
-        method: "GET", // Obtener todos los usuarios
-    };
+// const findUsersByName = async (name) => {
+//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
+//     const config = {
+//         method: "GET", // Obtener todos los usuarios
+//     };
 
-    // Obtener todos los usuarios del recurso
-    const response = await fetch(url.toString(), config);
-    const users = await response.json();
+//     // Obtener todos los usuarios del recurso
+//     const response = await fetch(url.toString(), config);
+//     const users = await response.json();
 
-    // Filtrar usuarios por coincidencias parciales en el nombre
-    const matchingUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+//     // Filtrar usuarios por coincidencias parciales en el nombre
+//     const matchingUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
 
-    console.log("Usuarios coincidentes:", matchingUsers);
-    return matchingUsers;
+//     console.log("Usuarios coincidentes:", matchingUsers);
+//     return matchingUsers;
+// };
+
+const normalizeText = (text) => {
+    // Normalizar texto eliminando tildes y pasando a minúsculas
+    return text
+        .normalize("NFD") // Descompone caracteres con tildes (por ejemplo, "á" -> "a + ́")
+        .replace(/[\u0300-\u036f]/g, "") // Elimina los diacríticos (tildes)
+        .toLowerCase(); // Convierte a minúsculas
 };
 
-while (confirm("¿Quieres buscar usuarios por nombre?")) {
-    const name = prompt("Ingrese el nombre o parte del nombre a buscar");
 
-    findUsersByName(name)
-        .then(results => {
-            if (results.length === 0) {
-                alert("No se encontraron usuarios con ese nombre.");
-            } else {
-                alert(`Usuarios encontrados:\n${results.map(user => `- ${user.name} (ID: ${user.id})`).join("\n")}`);
-            }
-        })
-        .catch(error => alert(`Error: ${error.message}`));
-}
 
 // const addUser = async (data) => {    
 //     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
@@ -169,6 +165,21 @@ while (confirm("¿Quieres buscar usuarios por nombre?")) {
 // }
 
 // USES
+
+// while (confirm("¿Quieres buscar usuarios por nombre?")) {
+//     const name = prompt("Ingrese el nombre o parte del nombre a buscar");
+
+//     findUsersByName(name)
+//         .then(results => {
+//             if (results.length === 0) {
+//                 alert("No se encontraron usuarios con ese nombre.");
+//             } else {
+//                 alert(`Usuarios encontrados:\n${results.map(user => `- ${user.name} (ID: ${user.id})`).join("\n")}`);
+//             }
+//         })
+//         .catch(error => alert(`Error: ${error.message}`));
+// }
+
 // while (confirm("¿Quieres Buscar los productos por id?")) {
 //     const datauser = {};
 //     datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
