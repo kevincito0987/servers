@@ -71,22 +71,53 @@
 
 //USERS
 
-const findAllUsers = async () => {
-    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-    url.pathname = "/users";
+// const findAllUsers = async () => {
+//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
+//     url.pathname = "/users";
+//     const config = {
+//         method: "GET", //Obtener todos los usuarios
+//     }
+//     const response = await fetch(url.toString(), config);
+//     const result = await response.json();
+//     console.log(response);
+//     return result;
+//  }
+
+// const data = await findAllUsers();
+//  console.log(data);
+
+const findUsersByName = async (name) => {
+    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
     const config = {
-        method: "GET", //Obtener todos los usuarios
-    }
+        method: "GET", // Obtener todos los usuarios
+    };
+
+    // Obtener todos los usuarios del recurso
     const response = await fetch(url.toString(), config);
-    const result = await response.json();
-    console.log(response);
-    return result;
- }
+    const users = await response.json();
 
-const data = await findAllUsers();
- console.log(data);
+    // Filtrar usuarios por coincidencias parciales en el nombre
+    const matchingUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
 
-// const addUser = async (data) => {
+    console.log("Usuarios coincidentes:", matchingUsers);
+    return matchingUsers;
+};
+
+while (confirm("¿Quieres buscar usuarios por nombre?")) {
+    const name = prompt("Ingrese el nombre o parte del nombre a buscar");
+
+    findUsersByName(name)
+        .then(results => {
+            if (results.length === 0) {
+                alert("No se encontraron usuarios con ese nombre.");
+            } else {
+                alert(`Usuarios encontrados:\n${results.map(user => `- ${user.name} (ID: ${user.id})`).join("\n")}`);
+            }
+        })
+        .catch(error => alert(`Error: ${error.message}`));
+}
+
+// const addUser = async (data) => {    
 //     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
 //     url.pathname = "/users";
 //     const header = new Headers();
