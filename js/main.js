@@ -38,18 +38,11 @@
 //     return result;
 // }
 
-//  const findProduct = async () => {
-//     const url = new URL("http://localhost:5600/products");
-//      const config = {
-//         method: "GET", //Obtener todos los productos
-//    }
-//     const response = await fetch(url.toString(), config);
-//     const result = await response.json();
-//     return result;
-//  }
-
-const findAllProducts = async () => {
-    const url = new URL("http://localhost:5600/products");
+const findProductById = async (data) => {
+    const {id} = data;
+    //configuracion del metodo GET
+    const url = new URL("http://localhost:5600");
+    url.pathname = `/products/${id}`;
     const config = {
         method: "GET", //Obtener todos los productos
     }
@@ -59,8 +52,28 @@ const findAllProducts = async () => {
     console.log("Esta es el resultado", result);
     return result;
 }
-const dataFindProduct = await findAllProducts();
-console.log("Los productos son", dataFindProduct);
+
+  while (confirm("¿Quieres Buscar los productos por id?")) {
+    const datauser = {};
+    datauser.id = Number(prompt("Ingrese el id del producto", "Mic330 o 1"));
+    findProductById(datauser)
+    .then(result => alert(JSON.stringify(result)))
+    .catch(error => alert(error));
+}
+
+// const findAllProducts = async () => {
+//     const url = new URL("http://localhost:5600/products");
+//     const config = {
+//         method: "GET", //Obtener todos los productos
+//     }
+//     const response = await fetch(url.toString(), config);
+//     console.log("Esta es la peticion", response);
+//     const result = await response.json();
+//     console.log("Esta es el resultado", result);
+//     return result;
+// }
+// const dataFindProduct = await findAllProducts();
+// console.log("Los productos son", dataFindProduct);
 
 //USERS
 // const findUser = async () => {
