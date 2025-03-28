@@ -69,119 +69,118 @@
 
 
 
-//USERS
-
-// const findAllUsers = async () => {
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-//     url.pathname = "/users";
-//     const config = {
-//         method: "GET", //Obtener todos los usuarios
-//     }
-//     const response = await fetch(url.toString(), config);
-//     const result = await response.json();
-//     console.log(response);
-//     return result;
-//  }
-
-// const data = await findAllUsers();
-//  console.log(data);
-
-// const findUsersByName = async (name) => {
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
-//     const config = {
-//         method: "GET", // Obtener todos los usuarios
-//     };
-
-//     // Obtener todos los usuarios del recurso
-//     const response = await fetch(url.toString(), config);
-//     const users = await response.json();
-
-//     // Filtrar usuarios por coincidencias parciales en el nombre
-//     const matchingUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
-
-//     console.log("Usuarios coincidentes:", matchingUsers);
-//     return matchingUsers;
-// };
-
-// const normalizeText = (text) => {
-//     // Normalizar texto eliminando tildes y pasando a minúsculas
-//     return text
-//         .normalize("NFD") // Descompone caracteres con tildes (por ejemplo, "á" -> "a + ́")
-//         .replace(/[\u0300-\u036f]/g, "") // Elimina los diacríticos (tildes)
-//         .toLowerCase(); // Convierte a minúsculas
-// };
-
-// const findUserByLastname = async (lastname) => {
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
-//     const config = {
-//         method: "GET", // Obtener todos los usuarios
-//     };
-
-//     // Obtener todos los usuarios del recurso
-//     const response = await fetch(url.toString(), config);
-//     const users = await response.json();
-
-//     // Filtrar usuarios por coincidencias parciales en el apellido (campo "last")
-//     const normalizedLastname = normalizeText(lastname);
-//     const matchingUsers = users.filter(user =>
-//         user.last && normalizeText(user.last).includes(normalizedLastname)
-//     );
-
-//     console.log("Usuarios coincidentes:", matchingUsers);
-//     return matchingUsers;
-// };
-
-// const addUser = async (data) => {    
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-//     url.pathname = "/users";
-//     const header = new Headers();
-//     header.append("Content-Type", "application/json");
-//     const config = {
-//         method: "POST", //Crear nuevo usuario
-//         headers: header,
-//         body: JSON.stringify(data)
-//     }
-//     const response = await fetch(url.toString(), config);
-//     const result = await response.json();
-//     console.log("Esta es la peticion", response);
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
-
-// const editUser = async (data) => {
-//     const {id, ...dataupdate} = data;
-//     const header = new Headers();
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-//      url.pathname = `/users/${id}`;
-//    header.append("Content-Type", "application/json");
-//     const config = {
-//         method: "PUT", //Actualizar
-//         headers: header,
-//         body: JSON.stringify(dataupdate)
-//     }
-//     const response = await fetch(url.toString(), config);         
-//     const result = await response.json();
-//     console.log("Esta es la peticion", response);
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
-
-
-// const deleteUser = async (id) => {
-//     const header = new Headers();
-//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-//     url.pathname = `/users/${id}`;
-//     header.append("Content-Type", "application/json");
-//     const config = {
-//         method: "DELETE", //Borrar
-//          headers: header,
-//     }
-//     const response = await fetch(url.toString(), config);         
-//      const result = await response.json();
-//     console.log("Esta es la peticion", response);
-//     console.log("Esta es el resultado", result);
-//     return result;
-// }
+const users = {
+    url: "https://67e6867f6530dbd3111055e8.mockapi.io",
+    endpoint: "/users",
+  
+    async findAllUsers() {
+      const url = new URL(this.url);
+      url.pathname = this.endpoint;
+      const config = {
+        method: "GET", //Obtener todos los usuarios
+      }
+      const response = await fetch(url.toString(), config);
+      const result = await response.json();
+      console.log(response);
+      return result;
+    },
+  
+    async findUsersByName(name) {
+      const url = new URL(this.url);
+      const config = {
+        method: "GET", // Obtener todos los usuarios
+      };
+  
+      // Obtener todos los usuarios del recurso
+      const response = await fetch(url.toString(), config);
+      const users = await response.json();
+  
+      // Filtrar usuarios por coincidencias parciales en el nombre
+      const matchingUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+  
+      console.log("Usuarios coincidentes:", matchingUsers);
+      return matchingUsers;
+    },
+  
+    normalizeText(text) {
+      // Normalizar texto eliminando tildes y pasando a minúsculas
+      return text
+        .normalize("NFD") // Descompone caracteres con tildes (por ejemplo, "á" -> "a + ́")
+        .replace(/[\u0300-\u036f]/g, "") // Elimina los diacríticos (tildes)
+        .toLowerCase(); // Convierte a minúsculas
+    },
+  
+    async findUserByLastname(lastname) {
+      const url = new URL(this.url);
+      const config = {
+        method: "GET", // Obtener todos los usuarios
+      };
+  
+      // Obtener todos los usuarios del recurso
+      const response = await fetch(url.toString(), config);
+      const users = await response.json();
+  
+      // Filtrar usuarios por coincidencias parciales en el apellido (campo "last")
+      const normalizedLastname = this.normalizeText(lastname);
+      const matchingUsers = users.filter(user =>
+        user.last && this.normalizeText(user.last).includes(normalizedLastname)
+      );
+  
+      console.log("Usuarios coincidentes:", matchingUsers);
+      return matchingUsers;
+    },
+  
+    async addUser(data) {
+      const url = new URL(this.url);
+      url.pathname = this.endpoint;
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      const config = {
+        method: "POST", //Crear nuevo usuario
+        headers: header,
+        body: JSON.stringify(data)
+      }
+      const response = await fetch(url.toString(), config);
+      const result = await response.json();
+      console.log("Esta es la peticion", response);
+      console.log("Esta es el resultado", result);
+      return result;
+    },
+  
+    async editUser(data) {
+      const { id, ...dataupdate } = data;
+      const header = new Headers();
+      const url = new URL(this.url);
+      url.pathname = `/users/${id}`;
+      header.append("Content-Type", "application/json");
+      const config = {
+        method: "PUT", //Actualizar
+        headers: header,
+        body: JSON.stringify(dataupdate)
+      }
+      const response = await fetch(url.toString(), config);
+      const result = await response.json();
+      console.log("Esta es la peticion", response);
+      console.log("Esta es el resultado", result);
+      return result;
+    },
+  
+    async deleteUser(id) {
+      const header = new Headers();
+      const url = new URL(this.url);
+      url.pathname = `/users/${id}`;
+      header.append("Content-Type", "application/json");
+      const config = {
+        method: "DELETE", //Borrar
+        headers: header,
+      }
+      const response = await fetch(url.toString(), config);
+      const result = await response.json();
+      console.log("Esta es la peticion", response);
+      console.log("Esta es el resultado", result);
+      return result;
+    }
+  };
 
 
 // USES
