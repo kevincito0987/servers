@@ -111,6 +111,26 @@ const normalizeText = (text) => {
         .toLowerCase(); // Convierte a minúsculas
 };
 
+const findUserByLastname = async (lastname) => {
+    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io/users");
+    const config = {
+        method: "GET", // Obtener todos los usuarios
+    };
+
+    // Obtener todos los usuarios del recurso
+    const response = await fetch(url.toString(), config);
+    const users = await response.json();
+
+    // Filtrar usuarios por coincidencias parciales en el apellido (campo "last")
+    const normalizedLastname = normalizeText(lastname);
+    const matchingUsers = users.filter(user =>
+        user.last && normalizeText(user.last).includes(normalizedLastname)
+    );
+
+    console.log("Usuarios coincidentes:", matchingUsers);
+    return matchingUsers;
+};
+
 
 
 // const addUser = async (data) => {    
