@@ -148,33 +148,24 @@
 //     return result;
 // }
 
-const editUser = async (data) => {
-    const {id, ...dataupdate} = data;
-    const header = new Headers();
-    const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
-     url.pathname = `/users/${id}`;
-   header.append("Content-Type", "application/json");
-    const config = {
-        method: "PUT", //Actualizar
-        headers: header,
-        body: JSON.stringify(dataupdate)
-    }
-    const response = await fetch(url.toString(), config);         
-    const result = await response.json();
-    console.log("Esta es la peticion", response);
-    console.log("Esta es el resultado", result);
-    return result;
-}
+// const editUser = async (data) => {
+//     const {id, ...dataupdate} = data;
+//     const header = new Headers();
+//     const url = new URL("https://67e6867f6530dbd3111055e8.mockapi.io");
+//      url.pathname = `/users/${id}`;
+//    header.append("Content-Type", "application/json");
+//     const config = {
+//         method: "PUT", //Actualizar
+//         headers: header,
+//         body: JSON.stringify(dataupdate)
+//     }
+//     const response = await fetch(url.toString(), config);         
+//     const result = await response.json();
+//     console.log("Esta es la peticion", response);
+//     console.log("Esta es el resultado", result);
+//     return result;
+// }
 
-while (confirm("¿Quieres actualizar la informacion del usuario?")) {
-    const datauser = {};
-    datauser.id = Number(prompt("Ingrese el id del usuario", "1 o 2"));
-    datauser.name = (confirm("¿Quieres cambiar el nombre del usuario?")) ? prompt("Ingrese el nombre del usuario", "Maria Garcia") : undefined;
-    datauser.last = (confirm("¿Quieres cambiar el apellido del usuario?")) ? prompt("Ingrese el apellido del usuario", "Garcia") : undefined;
-   editUser(datauser)
-     .then(result => alert(JSON.stringify(result)))
-     .catch(error => alert(error));
- }
 
 // const deleteUser = async (id) => {
 //     const header = new Headers();
@@ -193,6 +184,16 @@ while (confirm("¿Quieres actualizar la informacion del usuario?")) {
 // }
 
 // USES
+
+// while (confirm("¿Quieres actualizar la informacion del usuario?")) {
+//     const datauser = {};
+//     datauser.id = Number(prompt("Ingrese el id del usuario", "1 o 2"));
+//     datauser.name = (confirm("¿Quieres cambiar el nombre del usuario?")) ? prompt("Ingrese el nombre del usuario", "Maria Garcia") : undefined;
+//     datauser.last = (confirm("¿Quieres cambiar el apellido del usuario?")) ? prompt("Ingrese el apellido del usuario", "Garcia") : undefined;
+//    editUser(datauser)
+//      .then(result => alert(JSON.stringify(result)))
+//      .catch(error => alert(error));
+//  }
 
 // while (confirm("¿Quieres buscar usuarios por apellido?")) {
 //     const lastname = prompt("Ingrese el apellido o parte del apellido a buscar");
