@@ -198,7 +198,7 @@ const getRocketWitnMinWeight = async () => {
   }
 };
 
-//Excercise 7
+//Excercise 5
 
 const getRocketWithMaxWeight = async () => {
   const url = "https://api.spacexdata.com/v3/rockets";
