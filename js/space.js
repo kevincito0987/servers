@@ -462,7 +462,7 @@ const toUpperCase = (array) => {
 const isPrime = (number) => {
   if (number <= 1) {
     return false;
-  }else if (number === 2) { 
+  } else if (number === 2) {
     return true;
   } else {
     for (let i = 2; i < number; i++) {
@@ -474,6 +474,26 @@ const isPrime = (number) => {
   }
 };
 
-let number = Number(prompt("Introduce un número"));
+// let number = Number(prompt("Introduce un número"));
 
-console.log(`El número ${number} es primo: ${isPrime(number)}`);
+// console.log(`El número ${number} es primo: ${isPrime(number)}`);
+
+//Ejercicio 6.Crea una función que reciba dos arrays y devuelva un nuevo array que contenga los elementos comunes entre ambos.
+
+const commonElements = (array1, array2) => {
+  let commonElements = [];
+  for (let i = 0; i < array1.length; i++) {
+    for (let j = 0; j < array2.length; j++) {
+      if (array1[i] === array2[j]) {
+        commonElements.push(array1[i]);
+      }
+    }
+  }
+  return commonElements;
+};
+
+let array1 = ["Hola", "como", "estas", "antes", "de", "adios"];
+let array2 = ["hola", "como", "estas", "adios"];
+
+console.log("Los arrays originales son: ", array1, array2);
+console.log("Los elementos comunes son: ", commonElements(array1, array2));
