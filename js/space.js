@@ -377,8 +377,16 @@ const getRocketsPropulsion = async () => {
 
 getRocketsPropulsion();
 
-// getPlayLoadsRoketsNameById(Number(prompt("Ingrese el id del rocket")));
+// Ejercicios hoy que son faciles.
 
-// getDescriptionRoketById(Number(prompt("Ingrese el id del rocket")));
+/// 1. Crea una función que reciba dos números y devuelva su suma.
 
-//  getRoketesbyType(prompt("Ingrese el tipo de motor de la rocket"));
+const sumTwoNumbers = (num1, num2) => {
+  return num1 + num2;
+};
+
+let num1 = Number(prompt("Introduce el primer número"));
+let num2 = Number(prompt("Introduce el segundo número"));
+
+console.log(`El resultado de la suma de ${num1} y ${num2} es: ${sumTwoNumbers(num1, num2)}`);
+
