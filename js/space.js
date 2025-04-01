@@ -492,8 +492,27 @@ const commonElements = (array1, array2) => {
   return commonElements;
 };
 
-let array1 = ["Hola", "como", "estas", "antes", "de", "adios"];
-let array2 = ["hola", "como", "estas", "adios"];
+// let array1 = ["Hola", "como", "estas", "antes", "de", "adios"];
+// let array2 = ["hola", "como", "estas", "adios"];
 
-console.log("Los arrays originales son: ", array1, array2);
-console.log("Los elementos comunes son: ", commonElements(array1, array2));
+// console.log("Los arrays originales son: ", array1, array2);
+// console.log("Los elementos comunes son: ", commonElements(array1, array2));
+
+//Ejercicio 7.Crea una función que reciba un array de números y devuelva la suma de todos los números pares.
+
+const sumOfEvenNumbers = (array) => {
+  let sumOfEvenNumbers = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      sumOfEvenNumbers += array[i];
+    }
+  }
+  return sumOfEvenNumbers;
+};
+
+let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+console.log("Los números de la array son: ", array);
+console.log(`La suma de los números pares es: ${sumOfEvenNumbers(array)}`);
+
+
