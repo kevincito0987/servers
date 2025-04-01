@@ -452,9 +452,28 @@ const toUpperCase = (array) => {
   return newArray;
 };
 
-let array = ["hola", "como", "estas"];
+// let array = ["hola", "como", "estas"];
 
-console.log("El array original es: ", array);
-console.log("El array en mayúsculas es: ", toUpperCase(array));
+// console.log("El array original es: ", array);
+// console.log("El array en mayúsculas es: ", toUpperCase(array));
 
+//Ejercicio 5.Crea una función que reciba un número y devuelva true si es primo, y false en caso contrario.
 
+const isPrime = (number) => {
+  if (number <= 1) {
+    return false;
+  }else if (number === 2) { 
+    return true;
+  } else {
+    for (let i = 2; i < number; i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+};
+
+let number = Number(prompt("Introduce un número"));
+
+console.log(`El número ${number} es primo: ${isPrime(number)}`);
