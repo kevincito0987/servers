@@ -402,7 +402,42 @@ const getMaxNumber = (numbers) => {
   return maxNumber;
 };
 
-let numbers = [5, -2, 8, 31, 9];
+// let numbers = [5, -2, 8, 31, 9];
 
-console.log("Los numbers son: ", numbers);
-console.log(`El mayor de los números es: ${getMaxNumber(numbers)}`);
+// console.log("Los numbers son: ", numbers);
+// console.log(`El mayor de los números es: ${getMaxNumber(numbers)}`);
+
+//Ejercicio 3. Crea una función que reciba un string y devuelva el número de vocales que contiene.
+
+const countVocals = (string) => {
+  let countVocals = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[aeiou]/i)) {
+      countVocals++;
+    } else {
+      console.log("La oración no contiene vocales");
+    }
+  }
+  return countVocals;
+};
+
+const vocalsRepeated = (string) => {
+  let countVocals = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[aeiou]/i)) {
+      countVocals++;
+      if (countVocals > 1) {
+        return countVocals;
+      }
+    } else {
+      console.log("La oración no contiene vocales");
+    }
+  }
+};
+
+let string = "Hola, ¿cómo estás hoy en día?";
+
+console.log(
+  `El número de vocales en repetidas en ${string} es: ${vocalsRepeated(string)}`
+);
+console.log(`El número de vocales en ${string} es: ${countVocals(string)}`);
