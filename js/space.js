@@ -379,14 +379,30 @@ getRocketsPropulsion();
 
 // Ejercicios hoy que son faciles.
 
-/// 1. Crea una función que reciba dos números y devuelva su suma.
+//Ejercicio 1. Crea una función que reciba dos números y devuelva su suma.
 
 const sumTwoNumbers = (num1, num2) => {
   return num1 + num2;
 };
 
-let num1 = Number(prompt("Introduce el primer número"));
-let num2 = Number(prompt("Introduce el segundo número"));
+// let num1 = Number(prompt("Introduce el primer número"));
+// let num2 = Number(prompt("Introduce el segundo número"));
 
-console.log(`El resultado de la suma de ${num1} y ${num2} es: ${sumTwoNumbers(num1, num2)}`);
+// console.log(`El resultado de la suma de ${num1} y ${num2} es: ${sumTwoNumbers(num1, num2)}`);
 
+// Ejercicio 2. Crea una función que reciba un array de números y devuelva el mayor de ellos.
+
+const getMaxNumber = (numbers) => {
+  let maxNumber = numbers[0];
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > maxNumber) {
+      maxNumber = numbers[i];
+    }
+  }
+  return maxNumber;
+};
+
+let numbers = [5, -2, 8, 31, 9];
+
+console.log("Los numbers son: ", numbers);
+console.log(`El mayor de los números es: ${getMaxNumber(numbers)}`);
