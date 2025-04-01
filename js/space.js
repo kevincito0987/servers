@@ -435,9 +435,26 @@ const vocalsRepeated = (string) => {
   }
 };
 
-let string = "Hola, ¿cómo estás hoy en día?";
+// let string = "Hola, ¿cómo estás hoy en día?";
 
-console.log(
-  `El número de vocales en repetidas en ${string} es: ${vocalsRepeated(string)}`
-);
-console.log(`El número de vocales en ${string} es: ${countVocals(string)}`);
+// console.log(
+//   `El número de vocales en repetidas en ${string} es: ${vocalsRepeated(string)}`
+// );
+// console.log(`El número de vocales en ${string} es: ${countVocals(string)}`);
+
+// Ejercicio 4. Crea una función que reciba un array de strings y devuelva un nuevo array con las strings en mayúsculas.
+
+const toUpperCase = (array) => {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    newArray.push(array[i].toUpperCase());
+  }
+  return newArray;
+};
+
+let array = ["hola", "como", "estas"];
+
+console.log("El array original es: ", array);
+console.log("El array en mayúsculas es: ", toUpperCase(array));
+
+
