@@ -512,7 +512,50 @@ const sumOfEvenNumbers = (array) => {
 
 let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-console.log("Los números de la array son: ", array);
-console.log(`La suma de los números pares es: ${sumOfEvenNumbers(array)}`);
+// console.log("Los números de la array son: ", array);
+// console.log(`La suma de los números pares es: ${sumOfEvenNumbers(array)}`);
+
+// Promises:
+
+// Ejercicio 1. Crea tres funciones que devuelvan promesas:
+//    firstTask(): tarda 1s y muestra "Primera tarea completada".
+//    secondTask(): tarda 2s y muestra "Segunda tarea completada".
+//    thirdTask(): tarda 1.5s y muestra "Tercera tarea completada".
+
+const firstTask = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Primera tarea completada");
+      resolve();
+    }, 1000);
+  });
+};
+
+const secondTask = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Segunda tarea completada");
+      resolve();
+    }, 2000);
+  });
+};
+
+const thirdTask = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Tercera tarea completada");
+      resolve();
+    }, 1500);
+  });
+};
+
+//Para ejecutar las tareas en orden se deben priorizar.
+const tasks = async () => {
+  await firstTask();
+  await secondTask();
+  await thirdTask();
+};
+
+tasks();
 
 
