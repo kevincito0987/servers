@@ -556,6 +556,48 @@ const tasks = async () => {
   await thirdTask();
 };
 
-tasks();
+// tasks();
 
+// Ejercicio 2: Crea tres funciones que devuelvan promesas con tiempos de espera distintos.
+//    A continuación, usa Promise.all() para ejecutarlas todas al mismo tiempo y mostrar "Todas las promesas resueltas" cuando terminen.
 
+const firstPromise = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Primera promesa resuelta");
+      resolve();
+    }, 1000);
+  });
+};
+
+const secondPromise = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Segunda promesa resuelta");
+      resolve();
+    }, 2000);
+  });
+};
+
+const thirdPromise = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Tercera promesa resuelta");
+      resolve();
+    }, 1500);
+  });
+};
+
+//Lo mismo que en el ejercicio anterior, pero ahora usando Promise.all() de forma secuencial.
+
+const allPromisesInOrder = async () => {
+  const promises = [
+    firstPromise().then(() => secondPromise()).then(() => thirdPromise())
+  ];
+
+  await Promise.all(promises);
+
+  console.log("Todas las promesas resueltas en orden.");
+};
+
+allPromisesInOrder();
