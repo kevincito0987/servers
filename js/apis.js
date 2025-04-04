@@ -100,5 +100,54 @@ const getNumbersByRange = async (range) => {
   }
 };
 
-getNumbersByRange(Number(prompt("Introduce el rango de numeros")));
+// getNumbersByRange(Number(prompt("Introduce el rango de numeros")));
 
+const getAllUsers = async () => {
+  const url = "https://jsonplaceholder.typicode.com/users";
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+// getAllUsers();
+
+//Funcion que el usuario da nombres y se imprime una lista de todos los nombres que tengan coincidencia con el nombre que ingreso tiene mayusculas o minusculas, y tambien se puede ver si el usuario ingreso un nombre que no existe en la api.
+
+const getUsersByName = async (name) => {
+  const url = `https://jsonplaceholder.typicode.com/users?name_like=${name}`;
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+// getUsersByName(prompt("Introduce el nombre de usuario"));
+
+// Crear una funcion en el que el usuario pueda introducir un rango de numeros y luego se le muestra la direccion de hogar de ese usuario y su ubicacion.
+
+const getUserAddress = async (range) => {
+  const url = `https://jsonplaceholder.typicode.com/users?_limit=${range}`;
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+
+  for (let i = 0; i < result.length; i++) {
+    console.log("La direccion de la ubicacion de la user ", i, " es: ", result[i].address.street);
+    console.log("Se ubica en la suite del usuario ", i, " es: ", result[i].address.suite);
+    console.log("La ubicacion de la user ", i, " es: ", result[i].address.city);
+    console.log("El codigo postal de la user ", i, " es: ", result[i].address.zipcode);
+    console.log("Como ubicacion de la user ", i, " es: ", result[i].address.geo.lat, " y ", result[i].address.geo.lng);
+  }
+};
+
+getUserAddress(Number(prompt("Introduce el rango de usuarios")));
