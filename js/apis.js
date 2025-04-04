@@ -58,4 +58,25 @@ const getAlbumsByRange = async (range) => {
   return result;
 };
 
-getAlbumsByRange(Number(prompt("Introduce el rango de albumes")));
+// getAlbumsByRange(Number(prompt("Introduce el rango de albumes")));
+
+// Crear una funcion en la que el usuario pase un numero que es el rango imagenes que quiere ver, y que en el mensaje le salga la url principal y la url secundaria de las imagenes.
+
+const getImagesByRange = async (range) => {
+    //Obtener los albumes por rango
+  const url = `https://jsonplaceholder.typicode.com/photos?_limit=${range}`;
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+
+  for (let i = 0; i < result.length; i++) {
+    console.log("La url principal de la imagen del usuario ", i, " es: ", result[i].url);
+    console.log("La url secundaria de la imagen del usuario ", i, " es: ", result[i].thumbnailUrl);
+  }
+  return result;
+};
+
+getImagesByRange(Number(prompt("Introduce el rango de imagenes")));
+
