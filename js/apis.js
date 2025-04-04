@@ -42,4 +42,20 @@ const getEmailsByDomain = async (domain) => {
   console.log("Los correos de la api que terminan con: ", domain, " son: ", getEmailsByDomain);
 };
 
-getEmailsByDomain(prompt("Introduce el dominio"));
+// getEmailsByDomain(prompt("Introduce el dominio"));
+
+// Crear una funcion en la que el usuario pase un numero que es el rango de albumes que quiere ver, y luego se muestra la lista de albumes de ese rango.
+
+const getAlbumsByRange = async (range) => {
+    //Obtener los albumes por rango
+  const url = `https://jsonplaceholder.typicode.com/albums?_limit=${range}`;
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+getAlbumsByRange(Number(prompt("Introduce el rango de albumes")));
