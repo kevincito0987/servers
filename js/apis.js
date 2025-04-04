@@ -78,5 +78,27 @@ const getImagesByRange = async (range) => {
   return result;
 };
 
-getImagesByRange(Number(prompt("Introduce el rango de imagenes")));
+// getImagesByRange(Number(prompt("Introduce el rango de imagenes")));
+
+// Crear una funcion en el cual el usuario pueda introducir un rango de numeros y luego se muestra la lista de los numeros de ese rango, aparte si el dato a buscar la key compleatdo esta en true o false mostrar un mensaje correspondiente.
+
+const getNumbersByRange = async (range) => {
+  const url = `https://jsonplaceholder.typicode.com/todos?_limit=${range}`;
+  const config = {
+    method: "GET",
+  };
+  const response = await fetch(url, config);
+  const result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].completed) {
+      console.log("El curso ", i, " ha sido completado");
+    } else {
+      console.log("El curso ", i, " no ha sido completado");
+    }
+  }
+};
+
+getNumbersByRange(Number(prompt("Introduce el rango de numeros")));
 
