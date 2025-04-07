@@ -185,3 +185,70 @@ const addPostData = async () => {
 
 // addPostData();
 
+//Funcion para actualizar un post específico en la api al cual se le ingresa el id del post
+
+const updatePost = async (id, data) => {
+  let url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+  let config = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  let response = await fetch(url, config);
+  let result = await response.json();
+  //Antiguo objeto
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+const updatePostData = async () => {
+  let id = prompt("Introduce el id del post");
+  let title = prompt("Introduce el titulo del post");
+  let body = prompt("Introduce el cuerpo del post");
+  let userId = prompt("Introduce el id del usuario");
+  let data = {
+    title,
+    body,
+    userId
+  };
+  let resultdata = await updatePost(id, data);
+  console.log("El post se ha actualizado con exito: ", resultdata);
+};
+
+// Funcion para actualizar posts de la api
+
+const updatePosts = async (id, data) => {
+  let url = "https://jsonplaceholder.typicode.com/posts";
+  let config = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  let response = await fetch(url, config);
+  let result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+const updatePostsData = async () => {
+  let counter = Number(prompt("Introduce el numero de posts que quiere actualizar"));
+  for (let i = 0; i < counter; i++) {
+    let id = prompt("Introduce el id del post");
+    let title = prompt("Introduce el titulo del post");
+    let body = prompt("Introduce el cuerpo del post");
+    let userId = prompt("Introduce el id del usuario");
+    let data = {
+      title,
+      body,
+      userId
+    };
+    let resultdata = await updatePost(id, data);
+    console.log("El post se ha actualizado con exito: ", resultdata);
+  }
+};
+// updatePostsData();
+
