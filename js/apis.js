@@ -275,4 +275,24 @@ const deletePostData = async () => {
   console.log(`El post con el id ${id} se ha eliminado con exito: `, resultdata);
 };
 
-deletePostData();
+// deletePostData();
+
+// Filtro de busqueda de superheroes por id
+
+const getHeroById = async (id) => {
+  let url = `https://superheroapi.com/api.php/6d198022aa58cb30fdc987d72bec7531/${id}`;
+  let config = {
+    method: "GET",
+  };
+  let response = await fetch(url, config);
+  let result = await response.json();
+  return result;
+};
+
+const getHeroByIdData = async () => {
+  let id = Number(prompt("Introduce el id del hero"));
+  let resultdata = await getHeroById(id);
+  console.log("El hero se ha obtenido con exito: ", resultdata);
+};
+
+getHeroByIdData();
