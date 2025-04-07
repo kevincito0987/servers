@@ -252,3 +252,27 @@ const updatePostsData = async () => {
 };
 // updatePostsData();
 
+//Funcion para eliminar un post específico en la api al cual se le ingresa el id del post
+
+const deletePost = async (id) => {
+  let url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+  // Realizar una solicitud GET para obtener el post antes de eliminarlo
+  let getResponse = await fetch(url);
+  let postData = await getResponse.json();
+  console.log("Este es el objeto antes de eliminarlo: ", postData);
+
+  let config = {
+    method: "DELETE",
+  };
+  let response = await fetch(url, config);
+  let result = await response.json();
+  return result;
+};
+
+const deletePostData = async () => {
+  let id = Number(prompt("Introduce el id del post"));
+  let resultdata = await deletePost(id);
+  console.log(`El post con el id ${id} se ha eliminado con exito: `, resultdata);
+};
+
+deletePostData();
