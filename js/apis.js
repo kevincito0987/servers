@@ -150,4 +150,38 @@ const getUserAddress = async (range) => {
   }
 };
 
-getUserAddress(Number(prompt("Introduce el rango de usuarios")));
+// getUserAddress(Number(prompt("Introduce el rango de usuarios")));
+
+// Funcion para agregar un nuevo post en la api
+
+const addPost = async (data) => {
+  let url = "https://jsonplaceholder.typicode.com/posts";
+  let config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  let response = await fetch(url, config);
+  let result = await response.json();
+  console.log("Este es el resultado de todos los datos: ", result);
+  return result;
+};
+
+const addPostData = async () => {
+  let title = prompt("Introduce el titulo del post");
+  let body = prompt("Introduce el cuerpo del post");
+  let userId = prompt("Introduce el id del usuario");
+  let data = {
+    title,
+    body,
+    userId,
+  };
+  console.log("Los datos del post son: ", data);
+  let result = await addPost(data);
+  console.log("El post se ha agregado con exito: ", result);
+};
+
+// addPostData();
+
