@@ -295,4 +295,33 @@ const getHeroByIdData = async () => {
   console.log("El hero se ha obtenido con exito: ", resultdata);
 };
 
-getHeroByIdData();
+// getHeroByIdData();
+
+// Filtro de busqueda de superheroes basados en coincidencia de nombre
+
+const getHeroByName = async (name) => {
+  const url = `https://superheroapi.com/api.php/6d198022aa58cb30fdc987d72bec7531/search/${name}`;
+  const response = await fetch(url);
+  try {
+    const result = await response.json();
+    console.log("Superhéroes encontrados: ", result.results); // Aquí están las coincidencias
+    return result.results;
+  } catch (error) {
+    console.error("Error en la solicitud: ", error);
+    return null;
+  }
+};
+
+const getHeroByNameData = async () => {
+  const name = prompt("Introduce el nombre o parte del nombre del héroe");
+  const heroes = await getHeroByName(name);
+
+  if (heroes) {
+    heroes.forEach(hero => console.log(`Nombre: ${hero.name}, ID: ${hero.id}`));
+  } else {
+    console.log("No se encontraron resultados.");
+  }
+};
+
+getHeroByNameData();
+
